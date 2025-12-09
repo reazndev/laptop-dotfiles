@@ -1,0 +1,39 @@
+function cd --description 'Change directory with case-insensitive matching'
+    if test (count $argv) -eq 0
+        builtin cd
+        return
+    end
+    
+    set target $argv[1]
+    
+    if test -d "$target"
+        builtin cd "$target" $argv[2..-1]
+        return
+    end
+    
+    if not string match -q "/*" "$target"
+        for dir in */
+            set dir_name (string replace -r '/$' '' "$dir")
+            if test (string lower "$dir_name") = (string lower "$target")
+                builtin cd "$dir_name" $argv[2..-1]
+                return
+            end
+        end
+    else
+        set parent (dirname "$target")
+        set basename (basename "$target")
+        
+        if test -d "$parent"
+            for dir in "$parent"/*/
+                set dir_name (basename "$dir")
+                if test (string lower "$dir_name") = (string lower "$basename")
+                    builtin cd "$parent/$dir_name" $argv[2..-1]
+                    return
+                end
+            end
+        end
+    end
+    
+    # If no match found, use original cd behavior (will show error)
+    builtin cd "$target" $argv[2..-1]
+end

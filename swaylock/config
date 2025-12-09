@@ -1,0 +1,54 @@
+# --- GENERAL ---
+daemonize
+show-failed-attempts
+ignore-empty-password
+
+# --- DISPLAY ---
+image=/home/reazn/.config/wallpaper/bw-mountains1.jpg
+
+# --- CLOCK ---
+clock
+timestr=%H:%M
+datestr=%A, %d %B
+# Position the clock (centered by default)
+# You can move it if you like, e.g., --time-pos x:y
+
+# --- FONT ---
+font=Manrope
+font-size=40
+
+# --- INDICATOR STYLING ---
+# To remove the ring, we set the thickness to 0 and radius to 0 (or large if you want centered text)
+# We keep the indicator enabled so status messages (Wrong/Verifying) still appear as text.
+indicator
+indicator-radius=20
+indicator-thickness=0
+
+# Ring Base (Transparent/Invisible)
+ring-color=00000000
+inside-color=00000000
+line-color=00000000
+separator-color=00000000
+
+# Ring (Typing)
+# Since thickness is 0, the ring won't show, but text color will apply
+key-hl-color=89b4fa
+ring-ver-color=00000000
+inside-ver-color=00000000
+text-ver-color=89b4fa
+
+# Ring (Wrong Password)
+ring-wrong-color=00000000
+inside-wrong-color=00000000
+text-wrong-color=a55555
+line-wrong-color=00000000
+
+# Ring (Verified/Cleared)
+ring-clear-color=00000000
+inside-clear-color=00000000
+text-clear-color=89b4fa
+line-clear-color=00000000
+
+# Text Colors
+text-color=ffffff
+text-caps-lock-color=a55555

@@ -1,0 +1,274 @@
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+
+# caps
+set $mod Mod3 
+
+# super
+set $mod2 Mod4
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# Your preferred terminal emulator
+set $term kitty
+
+# Your preferred application launcher
+set $menu vicinae open
+
+bindsym $mod+o exec wlogout
+
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+bindsym $mod+d workspace back_and_forth
+
+bindsym $mod+n exec swaync-client -t
+
+# enable global blur
+blur enable
+blur_passes 2
+blur_radius 4
+
+for_window [class="Spotify"] {
+    opacity 0.90;      
+    blur enable;       
+}
+
+# Blur waybar
+layer_effects "waybar" blur enable
+
+# Opaciy/dim Vesktop
+for_window [app_id="vesktop"] opacity 0.85
+for_window [app_id="vesktop"] dim_inactive 0.2
+
+
+# Opacity/dim Element
+for_window [app_id="Element"] opacity 0.90
+for_window [app_id="Element"] dim_inactive 0.2
+
+# Blur the main dashboard
+layer_effects "swaync-control-center" blur enable; shadows enable; corner_radius 12
+
+# Blur the notification popups
+layer_effects "swaync-control-center" blur enable; shadows enable; corner_radius 24
+
+layer_effects "kitty" blur enable; shadows enable;
+
+layer_effects "swaync-notification-window" blur enable; blur_ignore_transparent enable; corner_radius 4
+
+# Wallpaper
+exec awww home/reazn/.config/wallpaper/bw-mountains1.jpg --mode fill
+
+### Idle configuration
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
+### Input configuration
+
+   input "type:touchpad" {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+}
+
+### Key bindings
+#
+# Basics:
+#
+    # Replace Umlaute
+    bindsym $mod+semicolon exec wtype ä
+    bindsym $mod+shift+semicolon exec wtype Ä
+
+    bindsym $mod+apostrophe exec wtype ö
+    bindsym $mod+shift+apostrophe exec wtype Ö
+
+    bindsym $mod+bracketleft exec wtype ü
+    bindsym $mod+shift+bracketleft exec wtype Ü
+
+    # Kill focused window
+    bindsym $mod+w kill
+
+    # Clipboard manager (vicinae)
+    bindsym $mod2+v exec vicinae vicinae://extensions/vicinae/clipboard/history
+    bindsym $mod+v exec vicinae vicinae://extensions/vicinae/clipboard/history
+
+    # Emojis
+    bindsym $mod+period exec vicinae vicinae://extensions/vicinae/vicinae/search-emojis
+    bindsym $mod2+period exec vicinae vicinae://extensions/vicinae/vicinae/search-emojis    
+
+    # Execs
+    bindsym $mod2+space exec $menu
+    bindsym $mod+space exec $menu
+
+    bindsym $mod+Return exec $term
+    bindsym $mod2+Return exec $term
+    
+    # foot with shift (faster startup times)
+    bindsym $mod+shift+return exec foot
+    bindsym $mod2+shift+return exec foot
+
+    bindsym $mod2+e exec dolphin
+    bindsym $mod2+x exec flatpak run app.zen_browser.app
+    bindsym $mod2+c exec code
+    bindsym $mod2+b exec element-desktop
+
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # managed by autotile
+
+    # Switch the current container between different layout styles
+    # bindsym $mod+s layout stacking
+    # bindsym $mod+w layout tabbed
+    # bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+t floating toggle
+
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 50px
+    bindsym Down resize grow height 50px
+    bindsym Up resize shrink height 50px
+    bindsym Right resize grow width 50px
+
+    # Return to default mode
+    bindsym Escape mode "default"
+}
+    bindsym $mod+r mode "resize"
+#
+# Utilities:
+#
+    # Volume Up/Down/Mute
+    bindsym --locked XF86AudioRaiseVolume exec ~/.config/sway/scripts/volume.sh up
+    bindsym --locked XF86AudioLowerVolume exec ~/.config/sway/scripts/volume.sh down
+    bindsym --locked XF86AudioMute exec ~/.config/sway/scripts/volume.sh mute
+
+    # Microphone Mute (Does not require a notification in this script, but you can add one)
+    bindsym --locked XF86AudioMicMute exec ~/.config/sway/scripts/volume.sh mic-mute
+
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+
+    # Special key to take a screenshot with grim
+
+    bindsym $mod2+Shift+s exec grim -g "$(slurp)" - | tee ~/Media/Screenshots/screenshot_$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy   
+
+
+
+#
+# Status Bar:
+# using waybar
+
+# remove titlebar
+default_border pixel 2
+default_floating_border pixel 2
+
+# Window Colors
+# Format:                Border    Background Text     Indicator  Child_Border
+
+# ACTIVE WINDOW (Light Gray Border: #cccccc)
+client.focused           #cccccc   #cccccc    #000000  #cccccc    #cccccc
+
+# INACTIVE WINDOW (Dark Gray Border: #333333)
+client.unfocused         #333333   #333333    #888888  #333333    #333333
+
+# URGENT/ALERT (Red)
+client.urgent            #bf616a   #bf616a    #ffffff  #bf616a    #bf616a
+
+
+exec_always autotiling
+exec_always waybar
+exec_always awww-daemon
+
+exec vicinae server
+exec tlp auto
+exec swaync

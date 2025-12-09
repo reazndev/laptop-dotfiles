@@ -1,0 +1,203 @@
+/* ════════════════════════════════════════════════════════
+ * Symphony Theme Adaptation for Waybar
+ * Matches SwayNC style & colors
+ * ════════════════════════════════════════════════════════ */
+
+/* --- VARIABLES (Matched to SwayNC) --- */
+@define-color text            #ffffff;                  /* @on_background */
+@define-color cc-bg           rgba(16, 16, 16, 0.75);   /* Bar background */
+@define-color widget-bg       rgba(20, 20, 20, 0.95);   /* Tooltip/Menu background */
+@define-color border-color    rgba(255, 255, 255, 0.1); /* Borders */
+@define-color hover-bg        rgba(255, 255, 255, 0.1); /* Hover effects */
+@define-color accent          #89b4fa;                  /* Focused workspace */
+@define-color urgent          #a55555;                  /* Urgent/Recording */
+
+* {
+  font-family: "Manrope", "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+/* --- THE BAR (Floating Style) --- */
+
+window#waybar {
+  /* Transparent enough for blur */
+  background: @cc-bg; 
+  color: @text;
+  
+  /* Floating Look: Add borders and radius */
+  border: 1px solid @border-color;
+  border-radius: 4px;
+
+  /* LIFT IT UP: Top | Right | Bottom | Left */
+  /* This creates the gap from the screen edges */
+  margin: 12px 18px 0 18px;  
+  
+  transition: all 0.3s ease;
+}
+
+/* --- MENUS & TOOLTIPS --- */
+
+tooltip {
+  background: @widget-bg;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+tooltip label {
+  color: @text;
+}
+
+menu {
+  background: @widget-bg;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+menu menuitem:hover {
+  background: @hover-bg;
+  border-radius: 2px;
+}
+
+/* --- WORKSPACES --- */
+
+#workspaces {
+  padding: 0 4px;
+}
+
+#workspaces button {
+  padding: 0 6px;
+  margin: 4px 2px;
+  border-radius: 4px;
+  color: @text;
+  background: transparent;
+  font-weight: 500;
+}
+
+/* Focused: Use Accent Color with Dark Text */
+#workspaces button.focused {
+  background: @accent;
+  color: #101010; 
+  font-weight: 700;
+}
+
+#workspaces button.urgent {
+  background: @urgent;
+  color: #ffffff;
+}
+
+#workspaces button:hover {
+  background: @hover-bg;
+}
+
+/* Dim empty workspaces */
+#workspaces button.empty {
+  color: alpha(@text, 0.5);
+}
+
+/* --- MODULES --- */
+
+.modules-left, .modules-center, .modules-right {
+  /* Add padding to the container itself, not the items */
+  padding: 2px 10px;
+}
+
+/* Clear generic margins that cause overlap issues */
+.modules-left > *, 
+.modules-center > *, 
+.modules-right > * {
+  margin: 0;
+  padding: 0;
+}
+
+/* Specific Module Styling & Spacing */
+
+#clock,
+#battery,
+#temperature,
+#network,
+#bluetooth,
+#pulseaudio,
+#backlight,
+#tray,
+#mpd,
+#mpris,
+#window,
+#custom-notification {
+  padding: 0 8px; /* Internal padding for click targets */
+  margin: 0 4px;  /* Increased spacing between modules */
+  color: @text;
+  font-weight: 600;
+}
+
+#custom-logo {
+margin-left: 10px;
+padding-right: 5px;
+}
+
+/* DND State: Dim the icon when Do Not Disturb is active */
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification {
+  color: alpha(@text, 0.5);
+}
+
+/* Fix: Ensure clock has enough width to prevent jitter/overlap */
+#clock {
+  min-width: 64px;
+  margin-right: 0; /* Align to edge */
+}
+
+#battery {
+  color: @text;
+}
+
+#battery.charging, #battery.plugged {
+  color: @accent;
+}
+
+#battery.critical:not(.charging) {
+  background-color: @urgent;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Media Player */
+#mpd, #mpris {
+  color: alpha(@text, 0.9);
+  padding: 0 10px;
+}
+
+/* Recording Indicator */
+#custom-screenrecording-indicator {
+  color: @urgent;
+  margin-right: 10px;
+}
+
+/* Tray */
+#tray {
+  margin-right: 10px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @urgent;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}

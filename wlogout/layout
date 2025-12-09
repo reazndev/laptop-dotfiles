@@ -1,0 +1,37 @@
+
+{
+    "label": "lock",
+    "action": "swaylock",
+    "text": "lock",
+    "keybind": "l"
+}
+{
+    "label": "shutdown",
+    "action": "systemctl poweroff",
+    "text": "shutdown",
+    "keybind": "s"
+}
+{
+    "label": "logout",
+    "action": "swaymsg exit",
+    "text": "logout",
+    "keybind": "e"
+}
+{
+    "label": "reboot",
+    "action": "systemctl reboot",
+    "text": "reboot",
+    "keybind": "r"
+}
+{
+    "label": "suspend",
+    "action": "systemctl suspend",
+    "text": "suspend",
+    "keybind": "u"
+}
+{
+    "label": "hibernate",
+    "action": "systemctl hibernate",
+    "text": "hibernate",
+    "keybind": "h"
+}

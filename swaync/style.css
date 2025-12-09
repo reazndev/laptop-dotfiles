@@ -1,0 +1,224 @@
+/* --- VARIABLES --- */
+@define-color text            #ffffff;                  /* @on_background */
+@define-color cc-bg           rgba(16, 16, 16, 0.75);   /* window#waybar background */
+@define-color widget-bg       rgba(20, 20, 20, 0.95);   /* menu background */
+@define-color border-color    rgba(255, 255, 255, 0.1); /* menu border */
+@define-color hover-bg        rgba(255, 255, 255, 0.1); /* menuitem:hover */
+@define-color accent          #89b4fa;                  /* Matched to your focused workspace color */
+@define-color urgent          #a55555;                  /* Matched to screenrecording active color */
+
+* {
+  color: @text;
+  all: unset;
+  font-size: 13px; 
+  font-family: "Manrope", "JetBrainsMono Nerd Font", sans-serif;
+  transition: 200ms;
+}
+
+/* Avoid 'annoying' background */
+.blank-window {  
+  background: transparent;  
+}
+
+/* CONTROL CENTER (The Dashboard) ----------------------------------- */
+
+.control-center {
+  /* This transparent background triggers the SwayFX blur */
+  background: @cc-bg;
+  
+  /* Borders and radius matched to 'menu' and 'tooltip' styles */
+  border: 1px solid @border-color;
+  border-radius: 4px; 
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  margin: 18px;
+  padding: 12px;
+}
+
+/* --- NOTIFICATIONS --- */
+
+.control-center .notification-row .notification-background,
+.control-center .notification-row .notification-background .notification.critical {
+  background-color: @widget-bg;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  margin: 6px 0px;
+  padding: 4px;
+}
+
+
+/* Critical Notifications */
+.control-center .notification-row .notification-background .notification.critical {
+  color: @urgent;
+  border: 1px solid @urgent;
+}
+
+/* Image inside the notification */
+.notification .image {
+  margin-right: 14px; 
+  margin-left: 0px;   
+}
+
+.control-center .notification-row .notification-background .notification .notification-content {
+  margin: 6px;
+  padding: 8px 6px 2px 2px;
+}
+
+/* Notification Actions (Buttons) */
+.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action {
+  background: @hover-bg; 
+  color: @text;
+  border-radius: 4px;
+  margin: 6px;
+  border: 1px solid transparent;
+}
+
+.control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
+  background: @accent;
+  color: #101010; /* Dark text on accent background */
+}
+
+/* Close Button */
+.control-center .notification-row .notification-background .close-button {
+  background: transparent;
+  border-radius: 4px;
+  color: @text;
+  margin: 0px;
+  padding: 4px;
+}
+
+.control-center .notification-row .notification-background .close-button:hover {
+  background-color: @urgent;
+  color: #ffffff;
+}
+
+/* --- WIDGETS --- */
+
+/* Titles (Clear All, etc) */
+.widget-title {
+  font-size: 1.1em;
+  margin: 6px;
+  font-weight: 600;
+}
+
+.widget-title button {
+  background: @widget-bg;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  padding: 4px 16px;
+}
+
+.widget-title button:hover {
+  background-color: @hover-bg;
+}
+
+/* Do Not Disturb Switch */
+.widget-dnd {
+  margin: 6px;
+  font-size: 1.1rem;
+}
+
+.widget-dnd > switch {
+  background: @widget-bg;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+}
+
+.widget-dnd > switch:checked {
+  background: @accent;
+}
+
+.widget-dnd > switch slider {
+  background: @text;
+  border-radius: 4px;
+}
+
+/* Quick Settings Grid */
+.widget-buttons-grid {
+  font-size: 16px; /* Slightly larger icons */
+  padding: 6px;
+  margin: 6px;
+  border-radius: 4px;
+  background: @widget-bg;
+  border: 1px solid @border-color;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button {
+  margin: 4px 10px;
+  padding: 6px 12px;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+  background: @hover-bg;
+}
+
+/* --- MUSIC PLAYER --- */
+
+.widget-mpris {
+  background: @widget-bg;
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  color: @text;
+  margin: 10px 6px;
+}
+
+/* Player Background */
+.widget-mpris-player {
+  /* Using a dark solid color here to make sure album art looks crisp */
+  background-color: #141414; 
+  border-radius: 4px;
+  padding: 6px 14px;
+  margin: 6px;
+}
+
+.widget-mpris-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.widget-mpris-subtitle {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: alpha(@text, 0.7);
+}
+
+/* --- FLOATING NOTIFICATIONS (Popups) --- */
+
+/*
+   This ensures the "box" holding all notifications is invisible 
+   so SwayFX doesn't blur the empty space between them. */
+.floating-notifications,
+.floating-notifications.background {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.floating-notifications.background .notification-row {
+  background: @cc-bg;
+  /* make transparent */
+  margin: 3px 12px;
+  box-shadow: none;
+}
+
+.floating-notifications.background .notification-row:first-child {
+  margin-top: 20px;
+}
+
+/* 3. STYLE THE ACTUAL BUBBLE
+   This is the only part that should have color and borders. */
+.floating-notifications.background .notification-row .notification-background {
+  background: @cc-bg; 
+  border: 1px solid @border-color;
+  border-radius: 4px;
+  
+  margin: 0; 
+  padding: 8px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+}
+
+/* Critical Notification Styling */
+.floating-notifications.background .notification-row .notification-background .notification.critical {
+  border: 1px solid @urgent;
+}
