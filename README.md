@@ -1,3 +1,5 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/reazndev/laptop-dotfiles)
+
 # 🌑 My Dotfiles
 
 > **A dark, translucent, and minimalist setup for Sway.**
