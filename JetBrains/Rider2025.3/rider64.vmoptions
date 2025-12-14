@@ -1,0 +1,4 @@
+-Xmx2048m
+-Dide.managed.by.toolbox=/home/reazn/Downloads/jetbrains-toolbox-3.1.2.64642/bin/jetbrains-toolbox
+-Dtoolbox.notification.token=8cf595e2-2906-4e73-a8d4-60a0a3e6ebcb
+-Dtoolbox.notification.portFile=/home/reazn/.cache/JetBrains/Toolbox/ports/4222dec1-a782-40ee-9ae9-34384c41fc22.port

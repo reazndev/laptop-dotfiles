@@ -73,11 +73,7 @@
       "actions": [
         {
           "label": " ",
-          "command": "amixer set Master toggle"
-        },
-        {
-          "label": "",
-          "command": "amixer set Capture toggle"
+          "command": "pulsemixer --toggle-mute"
         },
         {
           "label": " ",
@@ -87,10 +83,10 @@
           "label": "󰂯",
           "command": "blueman-manager"
         },
-        {
-          "label": "󰏘",
-          "command": "nwg-look"
-        }
+	{
+	  "label": "󰌌",
+	  "command": "~/.config/swaync/disable_kb.sh"
+	}
         
       ]
       

@@ -1,4 +1,4 @@
-### Variables
+## Variables
 #
 # Logo key. Use Mod1 for Alt.
 
@@ -32,22 +32,9 @@ blur enable
 blur_passes 2
 blur_radius 4
 
-for_window [class="Spotify"] {
-    opacity 0.90;      
-    blur enable;       
-}
 
 # Blur waybar
 layer_effects "waybar" blur enable
-
-# Opaciy/dim Vesktop
-for_window [app_id="vesktop"] opacity 0.85
-for_window [app_id="vesktop"] dim_inactive 0.2
-
-
-# Opacity/dim Element
-for_window [app_id="Element"] opacity 0.90
-for_window [app_id="Element"] dim_inactive 0.2
 
 # Blur the main dashboard
 layer_effects "swaync-control-center" blur enable; shadows enable; corner_radius 12
@@ -118,6 +105,7 @@ exec swayidle -w \
     bindsym $mod2+c exec code
     bindsym $mod2+b exec element-desktop
 
+    bindsym $mod+g exec ~/.config/sway/toggle_gaps.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -127,7 +115,7 @@ exec swayidle -w \
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+c exec pkill waybar && swaymsg reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'

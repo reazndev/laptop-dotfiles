@@ -68,3 +68,9 @@ alias code "/usr/share/code/code --enable-features=UseOzonePlatform --ozone-plat
 zoxide init fish --cmd cd | source
 
 fish_add_path /home/reazn/.spicetify
+
+
+# --- Java Configuration for VS Code ---
+set -x JAVA_HOME "/usr/lib/jvm/java-21-openjdk-amd64"
+set -x PATH $JAVA_HOME/bin $PATH
+# --------------------------------------

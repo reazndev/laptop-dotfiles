@@ -1,0 +1,52 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="$SelectAll">
+      <i c="4" l="1765728083753" />
+    </e>
+    <e n="AIAssistantHubPopupAction">
+      <i c="1" l="1765728152313" />
+    </e>
+    <e n="EditorBackSpace">
+      <i c="3" l="1765727660518" />
+    </e>
+    <e n="EditorDeleteToWordStart">
+      <i c="1" l="1765727657815" />
+    </e>
+    <e n="ExpandRegion">
+      <i c="3" l="1765728137619" />
+    </e>
+    <e n="HelpTopics">
+      <i c="1" l="1765727988434" />
+    </e>
+    <e n="RiderNewSolution">
+      <i c="2" l="1765728074079" />
+    </e>
+    <e n="Run">
+      <i c="1" l="1765728142806" />
+    </e>
+    <e n="WelcomeScreen.Settings">
+      <i c="3" l="1765728000850" />
+    </e>
+    <e n="com.intellij.openapi.actionSystem.AnActionWrapper">
+      <i c="1" l="1765728009094" />
+    </e>
+    <e n="com.intellij.openapi.actionSystem.DefaultActionGroup">
+      <i c="1" l="1765727637385" />
+    </e>
+    <e n="com.intellij.openapi.fileEditor.impl.tabActions.CloseTab">
+      <i c="1" l="1765728140130" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.welcomeScreen.WelcomeScreenComponentFactory$4">
+      <i c="6" l="1765728026125" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$HideAction">
+      <i c="1" l="1765728336960" />
+    </e>
+    <e n="com.intellij.toolWindow.ToolWindowHeader$ShowOptionsAction">
+      <i c="1" l="1765728335061" />
+    </e>
+    <e n="com.intellij.ui.dsl.builder.components.SegmentedButtonAction">
+      <i c="3" l="1765728117899" />
+    </e>
+  </component>
+</application>

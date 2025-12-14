@@ -113,23 +113,11 @@
     "on-click": "kitty -e nmtui"
   },
 
-  "custom/tlp-mode": {
-    "format": "{}",
-    "exec": "~/.config/waybar/tlp-status-checker.sh",
-    "interval": 10,
-    "tooltip": false
-  },
-"battery": {
+  "battery": {
     "format": "{icon}",
     "format-discharging": "{icon} {capacity}%",
     "format-charging": "{icon}",
     "format-plugged": "",
-    "on-click": "~/.config/waybar/power-profiles-switcher.sh",
-    // --- UPDATED TOOLTIP-FORMATS WITH TLP STATUS ---
-    "tooltip-format-discharging": "{capacity}% | -{power:.2f}W\n{{custom/tlp-mode.text}} | Time: {time}",
-    "tooltip-format-charging": "{capacity}% | +{power:.2f}W\n{{custom/tlp-mode.text}} | Time: {time}",
-    "tooltip-format-full": "Full | \n{{custom/tlp-mode.text}}",
-    "tooltip-format-plugged": "{capacity}% | \n{{custom/tlp-mode.text}}",
     "format-icons": {
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
       "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
